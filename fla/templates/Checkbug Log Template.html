@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Checkbug Log</title>
+<style type="text/css">
+* {margin: 0; padding: 0; }
+body { 
+	background: #151515;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fefefe;
+}
+#main-container {
+	margin: 10px auto;
+	clear: both;
+	width: 774px;
+}
+#container {
+	background: #252525;
+	border: 1px solid #000;
+	padding: 14px;
+}
+#header {
+
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fefefe;
+	
+	height: 60px;
+	padding: 18px 0 0;
+	
+}
+
+
+/* HIDE */
+.array-time, .item-time, .item-type, .array-type {
+	display: none;
+}
+/* TOOLTIP */
+#tooltip {
+	position:fixed;
+	width: auto;
+	padding: 3px;
+	height: 12px;
+	background: #FEFEFE;
+	color: #000;
+/*	visibility: hidden;*/
+	display: none;
+	border: 1px solid #000;
+}
+
+</style>
+
+<script type="text/javascript">
+function getBrowser() 
+{ 
+	var sys = {}; 
+	var ua = navigator.userAgent.toLowerCase(); 
+	var re =/(ie|firefox|chrome|opera|version).*?([\d.]+)/; 
+	var m = ua.match(re); 
+	sys.browser = m[1].replace(/version/, "'safari"); 
+	sys.ver = m[2]; 
+	return sys;
+} 
+var sys = getBrowser(); 
+function init(){
+	document.onmousemove = onMouseMove;
+	attachLinkEvents();
+}
+function onMouseMove(e) {
+	var tx;
+	var ty;
+	if(sys.browser== "firefox" || sys.browser== "opera"){
+		tx = e.clientX + document.body.scrollLeft - document.body.clientLeft;
+		ty = e.clientY + document.body.scrollTop - document.body.clientTop;
+	}
+	else if(sys.browser== "ie"){
+		
+		tx = window.event.x - document.documentElement.scrollLeft;
+		ty = window.event.y - document.documentElement.scrollTop;
+	}
+	else{
+		tx = window.event.x;
+		ty = window.event.y;
+	}
+	document.getElementById('tooltip').style.left = tx + 10 + "px";
+	document.getElementById('tooltip').style.top = ty + 15 + "px";
+}
+function setStatus(msg) {
+	document.getElementById('tooltip').innerHTML = msg;
+}
+function showStatus(){
+	document.getElementById('tooltip').style.display = "block";
+}
+
+function hideStatus(e){
+	document.getElementById('tooltip').style.display = "none";
+}
+
+function showTooltip(e){
+	if (!e) var e = window.event;
+	var tg = (window.event) ? e.srcElement : e.target;
+	var t;
+	if(tg.className == "") t = tg.parentNode.parentNode;
+	else t = tg.parentNode;
+	var nodes = getElementsByClassName(t,'div','item-time');
+	var time = nodes[0].innerHTML;
+	setStatus(time);
+	showStatus();
+}
+function hideTooltip(e){
+	hideStatus();
+}
+
+function attachLinkEvents() {
+	
+	var arr = getElementsByClassName(document,'div','item');
+
+	for (i=0; i<arr.length; i++) {
+		arr[i].onmouseover = showTooltip;
+		arr[i].onmouseout = hideTooltip;
+	}
+}
+function getElementsByClassName(oElm, strTagName, strClassName){
+	var arrElements = (strTagName == "*" && document.all)? document.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	strClassName = strClassName.replace(/\-/g, "\\-");
+	var oRegExp = new RegExp("(^|\\s)" + strClassName + "(\\s|$)");
+	var oElement;
+	for(var i=0; i<arrElements.length; i++){
+		oElement = arrElements[i];
+		if(oRegExp.test(oElement.className)){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+
+
+</script>
+
+</head>
+<body onload="init()">
+<div id="main-container">
+	<div id="header">${com.asfla.Checkbug.logPage::header}</div>
+	<div id="container">
+		${com.asfla.Checkbug.logPage::output}
+		<p class="clear">&nbsp;</p>
+	</div>
+	<p class="clear">&nbsp;</p>
+</div>
+<div id="tooltip" />
+</body>
+</html>

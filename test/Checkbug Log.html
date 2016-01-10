@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Arthropod Log</title>
+<style type="text/css">
+* {margin: 0; padding: 0; }
+body { 
+	background: #151515;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #fefefe;
+}
+#main-container {
+	margin: 10px auto;
+	clear: both;
+	width: 774px;
+}
+#container {
+	background: #252525;
+	border: 1px solid #000;
+	padding: 14px;
+}
+#header {
+
+	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #fefefe;
+	
+	height: 60px;
+	padding: 7px;
+	
+}
+
+
+/* HIDE */
+.array-time, .item-time, .item-type, .array-type {
+	display: none;
+}
+/* TOOLTIP */
+#tooltip {
+	position:fixed;
+	width: auto;
+	padding: 3px;
+	height: 12px;
+	background: #FEFEFE;
+	color: #000;
+/*	visibility: hidden;*/
+	display: none;
+	border: 1px solid #000;
+}
+
+</style>
+
+<script type="text/javascript">
+
+function init(){
+	document.onmousemove = onMouseMove;
+	attachLinkEvents();
+	document.getElementById('header').innerHTML = "Checkbug Log - " + document.lastModified;
+	
+}
+function onMouseMove(e) {
+	var tx;
+	var ty;
+	if (window.event){
+		tx = window.event.x;
+		ty = window.event.y;
+	}else{
+		tx = e.pageX;
+		ty = e.pageY;
+	}
+	document.getElementById('tooltip').style.left = tx + 9 + "px";
+	document.getElementById('tooltip').style.top = ty + 15 + "px";
+}
+function setStatus(msg) {
+	document.getElementById('tooltip').innerHTML = msg;
+}
+function showStatus(){
+	document.getElementById('tooltip').style.display = "block";
+}
+
+function hideStatus(e){
+	document.getElementById('tooltip').style.display = "none";
+}
+
+function showTooltip(e){
+	var t;
+	if(e.target.className == "") t = e.target.parentNode.parentNode;
+	else t = e.target.parentNode;
+	var nodes = getElementsByClassName(t,'div','item-time');
+	var time = nodes[0].innerHTML;
+	setStatus(time);
+	showStatus();
+}
+function hideTooltip(e){
+	hideStatus();
+}
+
+function attachLinkEvents() {
+	
+	var arr = getElementsByClassName(document,'div','item');
+
+	for (i=0; i<arr.length; i++) {
+		arr[i].onmouseover = showTooltip;
+		arr[i].onmouseout = hideTooltip;
+	}
+}
+function getElementsByClassName(oElm, strTagName, strClassName){
+	var arrElements = (strTagName == "*" && document.all)? document.all : oElm.getElementsByTagName(strTagName);
+	var arrReturnElements = new Array();
+	strClassName = strClassName.replace(/\-/g, "\\-");
+	var oRegExp = new RegExp("(^|\\s)" + strClassName + "(\\s|$)");
+	var oElement;
+	for(var i=0; i<arrElements.length; i++){
+		oElement = arrElements[i];
+		if(oRegExp.test(oElement.className)){
+			arrReturnElements.push(oElement);
+		}
+	}
+	return (arrReturnElements)
+}
+
+
+
+</script>
+
+</head>
+<body onload="init()">
+<div id="main-container">
+	<div id="header"></div>
+	<div id="container">
+		<div class="item"><div class="item-time">Mon Aug 29 11:57:27 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 8app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:29 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 9app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:29 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 10app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:29 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 11app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:29 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 11[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:30 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 12app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:30 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 13app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:30 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 14app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:30 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 14[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:31 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 15app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:31 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 16app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:31 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 16[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 17app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 18app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 19app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 20app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 21app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:32 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 22app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:33 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 22[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:33 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 23app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:34 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 23[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:34 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 24app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:34 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 24[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:34 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 25app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:34 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 25[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:35 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 26app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:36 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 27app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:36 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 28app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:37 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 29app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:37 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 30app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:37 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 31app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:38 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 32app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:38 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 32[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:38 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 33app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:38 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 33[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:39 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 34app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:39 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 34[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:39 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 35app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:40 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 35[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:40 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 35[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:40 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 36app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:41 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#ff0000" >-> 36[SWF LOG] app com asfla 中文消文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:41 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 37app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:41 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 38app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:41 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 39app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:41 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 40app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+<div class="item"><div class="item-time">Mon Aug 29 11:57:42 GMT+0800 2011</div><div class="item-type">output_message</div><div class="item-value"><span style="color:#666666" >-> 41app com asfla Checkbug checkbugapp com asfla Checkbug checkbug 中文消息中文消息中文消息中文消息中文消息！</span></div></div>
+
+		<p class="clear">&nbsp;</p>
+	</div>
+	<p class="clear">&nbsp;</p>
+</div>
+<div id="tooltip" />
+</body>
+</html>

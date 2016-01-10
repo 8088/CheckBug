@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<checkbug>
+	<title><![CDATA[Check Bug]]></title>
+	<type><![CDATA[app]]></type>
+	<config>
+		<first><![CDATA[yes]]></first>
+		<top><![CDATA[yes]]></top>
+		<upgrade>
+			<check>1324608891390</check>
+			<interval>1</interval>
+			<url><![CDATA[http://www.asfla.com/air/check_bug/download/update.xml]]></url>
+			<air><![CDATA[http://www.asfla.com/air/check_bug/download/Checkbug.air]]></air>
+		</upgrade>
+		<font>
+			<name><![CDATA[宋体]]></name>
+			<size><![CDATA[12]]></size>
+		</font>
+		<log>
+			<savelast><![CDATA[yes]]></savelast>
+		</log>
+	</config>
+	<version>
+		<latest><![CDATA[0.1]]></latest>
+		<loaded><![CDATA[no]]></loaded>
+	</version>
+</checkbug>
